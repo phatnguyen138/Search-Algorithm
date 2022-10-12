@@ -110,7 +110,7 @@ def endProgram():
     wn.exitonclick()
     sys.exit()
 
-def bfs(x,y):
+def bfs(x,y,end_x,end_y):
     visited = set()
     frontier = deque()
     frontier.append((x, y))
@@ -135,7 +135,7 @@ def bfs(x,y):
             blue.stamp()
             frontier.append(cell)
             visited.add((x, y - 24))
-            print(solution)
+            # print(solution)
 
         if(x + 24, y) in path and (x + 24, y) not in visited:   # check the cell on the  right
             cell = (x + 24, y)
@@ -152,10 +152,12 @@ def bfs(x,y):
             blue.stamp()
             frontier.append(cell)
             visited.add((x, y + 24))
+        if (x,y) == (end_x, end_y):
+            break
         green.goto(x,y)
         green.stamp()
 
-def dfs(x,y):
+def dfs(x,y,end_x,end_y):
     frontier = deque()
     solution[x,y] = x,y
     visited = []
@@ -163,55 +165,58 @@ def dfs(x,y):
     while len(frontier) > 0:
         time.sleep(0)
         current = (x,y)
+        if(x - 24, y) in path and (x - 24, y) not in visited:  # check left
+            cellleft = (x - 24, y)
+            solution[cellleft] = x, y  # backtracking routine [cell] is the previous cell. x, y is the current cell
+            blue.goto(cellleft)        # blue turtle goto the  cellleft position
+            blue.stamp()               # stamp a blue turtle on the maze
+            frontier.append(cellleft)  # add cellleft to the frontier list
+
+        if (x, y - 24) in path and (x, y - 24) not in visited:  # check down
+            celldown = (x, y - 24)
+            solution[celldown] = x, y  # backtracking routine [cell] is the previous cell. x, y is the current cell
+            blue.goto(celldown)
+            blue.stamp()
+            frontier.append(celldown)
+
+        if(x + 24, y) in path and (x + 24, y) not in visited:   # check right
+            cellright = (x + 24, y)
+            solution[cellright] = x, y  # backtracking routine [cell] is the previous cell. x, y is the current cell
+            blue.goto(cellright)
+            blue.stamp()
+            frontier.append(cellright)
+
+        if(x, y + 24) in path and (x, y + 24) not in visited:  # check up
+            cellup = (x, y + 24)
+            solution[cellup] = x, y  # backtracking routine [cell] is the previous cell. x, y is the current cell
+            blue.goto(cellup)
+            blue.stamp()
+            frontier.append(cellup)
+
+        x, y = frontier.pop()           # remove last entry from the frontier list and assign to x and y
         if x == end_x & y == end_y:
             break
-        else:
-            if(x - 24, y) in path and (x - 24, y) not in visited:  # check left
-                cellleft = (x - 24, y)
-                solution[cellleft] = x, y  # backtracking routine [cell] is the previous cell. x, y is the current cell
-                blue.goto(cellleft)        # blue turtle goto the  cellleft position
-                blue.stamp()               # stamp a blue turtle on the maze
-                frontier.append(cellleft)  # add cellleft to the frontier list
-
-            if (x, y - 24) in path and (x, y - 24) not in visited:  # check down
-                celldown = (x, y - 24)
-                solution[celldown] = x, y  # backtracking routine [cell] is the previous cell. x, y is the current cell
-                blue.goto(celldown)
-                blue.stamp()
-                frontier.append(celldown)
-
-            if(x + 24, y) in path and (x + 24, y) not in visited:   # check right
-                cellright = (x + 24, y)
-                solution[cellright] = x, y  # backtracking routine [cell] is the previous cell. x, y is the current cell
-                blue.goto(cellright)
-                blue.stamp()
-                frontier.append(cellright)
-
-            if(x, y + 24) in path and (x, y + 24) not in visited:  # check up
-                cellup = (x, y + 24)
-                solution[cellup] = x, y  # backtracking routine [cell] is the previous cell. x, y is the current cell
-                blue.goto(cellup)
-                blue.stamp()
-                frontier.append(cellup)
-
-            x, y = frontier.pop()           # remove last entry from the frontier list and assign to x and y
-            visited.append(current)         # add current cell to visited list
-            green.goto(x,y)                 # green turtle goto x and y position
-            green.stamp()                   # stamp a copy of the green turtle on the maze
-            if (x,y) == (end_x, end_y):     # makes sure the yellow end turtle is still visible after been visited
-                yellow.stamp()              # restamp the yellow turtle at the end position 
-            if (x,y) == (start_x, start_y): # makes sure the red start turtle is still visible after been visited
-                red.stamp()                 # restamp the red turtle at the start position 
+        visited.append(current)         # add current cell to visited list
+        green.goto(x,y)                 # green turtle goto x and y position
+        green.stamp()                   # stamp a copy of the green turtle on the maze
+        if (x,y) == (end_x, end_y):     # makes sure the yellow end turtle is still visible after been visited
+            yellow.stamp()              # restamp the yellow turtle at the end position 
+            break
+        if (x,y) == (start_x, start_y): # makes sure the red start turtle is still visible after been visited
+            red.stamp()                 # restamp the red turtle at the start position 
     
 
 
 def backRoute(x, y):
+    cost = 0
     yellow.goto(x, y)
     yellow.stamp()
     while (x, y) != (start_x, start_y):    # stop loop when current cells == start cell
         yellow.goto(solution[x, y])        # move the yellow sprite to the key value of solution ()
         yellow.stamp()
         x, y = solution[x, y]               # "key value" now becomes the new key
+        cost = cost + 1
+    return cost
 
 # set up classes
 maze = Maze()
@@ -228,8 +233,8 @@ solution = {}                           # solution dictionary
 
 # main program starts here ####
 setup_maze(grid)
-dfs(start_x,start_y)
-backRoute(end_x, end_y)
+bfs(start_x,start_y,end_x,end_y)
+print(backRoute(end_x, end_y))
 ts = turtle.getscreen()
 ts.getcanvas().postscript(file="duck.eps")
 wn.exitonclick()
