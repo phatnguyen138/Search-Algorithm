@@ -1,9 +1,15 @@
+
+from __future__ import annotations
 import turtle                    # import turtle library
 from turtle import *
 import time
 import sys
+import heapq
 from collections import deque
 from tkinter import *
+from typing import Protocol, Iterator, Tuple, TypeVar, Optional
+
+T = TypeVar('T')
 
 p_list = []
 maze_map = []
@@ -27,7 +33,7 @@ read_file('maze_map.txt')
 grid = maze_map
 
 wn = turtle.Screen()               # define the turtle screen
-wn.bgcolor("black")                # set the background colour
+wn.bgcolor("white")                # set the background colour
 wn.title("A BFS Maze Solving Program")
 wn.setup(830,550)                  # setup the dimensions of the working window
 turtle.speed(0)
@@ -38,9 +44,10 @@ class Maze(turtle.Turtle):               # define a Maze class
     def __init__(self):
         turtle.Turtle.__init__(self)
         self.shape("square")            # the turtle shape
-        self.color("white")             # colour of the turtle
+        self.color("black")             # colour of the turtle
         self.penup()                    # lift up the pen so it do not leave a trail
         self.speed(0)
+        self.neigh = {}
 
 # this is the class for the finish line - green square in the maze
 class Green(turtle.Turtle):
@@ -93,6 +100,7 @@ def setup_maze(grid):                          # define a function called setup_
 
             if character == " " or character == "e":
                 path.append((screen_x, screen_y))     # add " " and e to path list
+                cost[screen_x, screen_y] = 0
 
             if character == "e":
                 green.color("purple")
@@ -102,8 +110,26 @@ def setup_maze(grid):                          # define a function called setup_
                 green.color("green")
 
             if character == "s":
+                path.append((screen_x, screen_y))
                 start_x, start_y = screen_x, screen_y  # assign start locations variables to start_x and start_y
+                cost[screen_x, screen_y] = 0
                 red.goto(screen_x, screen_y)
+
+    for cell in path:
+        neighbor[cell] = []
+        if (cell[0] - 24,cell[1]) in path:
+            neighbor[cell].append((cell[0] -24,cell[1]))
+
+        if (cell[0], cell[1] - 24) in path:
+            neighbor[cell].append((cell[0], cell[1] - 24))
+
+        if (cell[0] + 24,cell[1]) in path:
+            neighbor[cell].append((cell[0] + 24,cell[1]))
+
+        if (cell[0], cell[1] + 24) in path:
+            neighbor[cell].append((cell[0], cell[1] + 24))
+        print(cell)
+
 
 
 def endProgram():
@@ -115,6 +141,7 @@ def bfs(x,y,end_x,end_y):
     frontier = deque()
     frontier.append((x, y))
     solution[x,y] = x,y
+    goal_reached = False
 
     while len(frontier) > 0:          # exit while loop when frontier queue equals zero
         time.sleep(0)
@@ -153,9 +180,11 @@ def bfs(x,y,end_x,end_y):
             frontier.append(cell)
             visited.add((x, y + 24))
         if (x,y) == (end_x, end_y):
+            goal_reached = True
             break
         green.goto(x,y)
         green.stamp()
+    return goal_reached
 
 def dfs(x,y,end_x,end_y):
     frontier = deque()
@@ -203,18 +232,57 @@ def dfs(x,y,end_x,end_y):
             yellow.stamp()              # restamp the yellow turtle at the end position 
             break
         if (x,y) == (start_x, start_y): # makes sure the red start turtle is still visible after been visited
-            red.stamp()                 # restamp the red turtle at the start position 
+            red.stamp()                 
     
 
+def UCS(x,y,end_x,end_y):
+    goal_reached = False
+    frontier = PriorityQueue()
+    frontier.put((x,y),0)
+    came_from = {}
+    cost_so_far = {}
+    came_from[(x, y)] = None
+    cost_so_far[(x, y)] = 0
+
+    while not frontier.empty():
+        current = frontier.get()
+        if current == (end_x, end_y):
+            goal_reached = True
+            break
+        
+        for next in neighbor[current]:
+            new_cost = cost_so_far[current] + cost[next]
+            if next not in cost_so_far or new_cost < cost_so_far[next]:
+                cost_so_far[next] = new_cost
+                priority = new_cost
+                frontier.put(next, priority)
+                solution[next] = current
+            green.goto(current)                 # green turtle goto x and y position
+            green.stamp() 
+
+    return goal_reached
+
+class PriorityQueue:
+    def __init__(self):
+        self.elements: list[tuple[float, T]] = []
+    
+    def empty(self) -> bool:
+        return not self.elements
+    
+    def put(self, item: T, priority: float):
+        heapq.heappush(self.elements, (priority, item))
+    
+    def get(self) -> T:
+        return heapq.heappop(self.elements)[1]
 
 def backRoute(x, y):
     cost = 0
     yellow.goto(x, y)
     yellow.stamp()
-    while (x, y) != (start_x, start_y):    # stop loop when current cells == start cell
-        yellow.goto(solution[x, y])        # move the yellow sprite to the key value of solution ()
+    while (x, y) != (start_x, start_y):   
+        yellow.goto(solution[x, y])       
         yellow.stamp()
-        x, y = solution[x, y]               # "key value" now becomes the new key
+        x, y = solution[x, y]  
         cost = cost + 1
     return cost
 
@@ -228,13 +296,17 @@ yellow = Yellow()
 # setup lists
 walls = []
 path = []
-solution = {}                           # solution dictionary
+solution = {}
+cost = {}
+neighbor = {}
 
 
 # main program starts here ####
 setup_maze(grid)
-bfs(start_x,start_y,end_x,end_y)
-print(backRoute(end_x, end_y))
+if UCS(start_x,start_y,end_x,end_y):
+    print(backRoute(end_x, end_y))
+else:
+    print("No way")
 ts = turtle.getscreen()
-ts.getcanvas().postscript(file="duck.eps")
+ts.getcanvas().postscript(file="duck.png")
 wn.exitonclick()
