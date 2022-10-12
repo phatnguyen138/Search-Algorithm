@@ -33,7 +33,7 @@ read_file('maze_map.txt')
 grid = maze_map
 
 wn = turtle.Screen()               # define the turtle screen
-wn.bgcolor("white")                # set the background colour
+wn.bgcolor("gray")                # set the background colour
 wn.title("A BFS Maze Solving Program")
 wn.setup(830,550)                  # setup the dimensions of the working window
 turtle.speed(0)
@@ -47,7 +47,6 @@ class Maze(turtle.Turtle):               # define a Maze class
         self.color("black")             # colour of the turtle
         self.penup()                    # lift up the pen so it do not leave a trail
         self.speed(0)
-        self.neigh = {}
 
 # this is the class for the finish line - green square in the maze
 class Green(turtle.Turtle):
