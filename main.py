@@ -23,11 +23,11 @@ def read_file(name):
     
     return p_list
 
-read_file('maze_map.txt')
+read_file('dfs.txt')
 grid = maze_map
 
 wn = turtle.Screen()               # define the turtle screen
-wn.bgcolor("black")                # set the background colour
+wn.bgcolor("gray")                # set the background colour
 wn.title("A BFS Maze Solving Program")
 wn.setup(830,550)                  # setup the dimensions of the working window
 turtle.speed(0)
@@ -38,7 +38,7 @@ class Maze(turtle.Turtle):               # define a Maze class
     def __init__(self):
         turtle.Turtle.__init__(self)
         self.shape("square")            # the turtle shape
-        self.color("white")             # colour of the turtle
+        self.color("black")             # colour of the turtle
         self.penup()                    # lift up the pen so it do not leave a trail
         self.speed(0)
 
@@ -209,13 +209,17 @@ def dfs(x,y,end_x,end_y):
 
 def backRoute(x, y):
     cost = 0
-    yellow.goto(x, y)
-    yellow.stamp()
+    red.goto(x, y)
+    red.color("purple")
+    red.stamp()
     while (x, y) != (start_x, start_y):    # stop loop when current cells == start cell
         yellow.goto(solution[x, y])        # move the yellow sprite to the key value of solution ()
         yellow.stamp()
         x, y = solution[x, y]               # "key value" now becomes the new key
         cost = cost + 1
+    red.goto(x,y)
+    red.color("red")
+    red.stamp()
     return cost
 
 # set up classes
@@ -233,7 +237,7 @@ solution = {}                           # solution dictionary
 
 # main program starts here ####
 setup_maze(grid)
-bfs(start_x,start_y,end_x,end_y)
+dfs(start_x,start_y,end_x,end_y)
 print(backRoute(end_x, end_y))
 ts = turtle.getscreen()
 ts.getcanvas().postscript(file="duck.eps")
