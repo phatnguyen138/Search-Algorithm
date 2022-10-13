@@ -1,9 +1,2 @@
 mazes/
-bfs.py
-maze.py
-duck.eps
-generic_search/
-__pycache__/
-img/
-record
-duck.png
+
