@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 import turtle                    # import turtle library
 from turtle import *
@@ -11,12 +10,11 @@ from typing import Protocol, Iterator, Tuple, TypeVar, Optional
 
 T = TypeVar('T')
 
-p_list = []
 maze_map = []
+cost = {}
 
 def read_file(name):
     count = 0
-
     with open('mazes/' + name,'r') as f:
         first_line = int(f.readline()[0])
         for line in f.readlines():
@@ -24,10 +22,12 @@ def read_file(name):
                 maze_map.append(line)
             else:
                 point_info = line.split(' ')
-                p_list.append([int(point_info[0]), int(point_info[1]), int(point_info[2].rstrip()) ]) 
+                cell_x = -400 + (int( point_info[0]) * 24)
+                cell_y = 260 - (int(point_info[1]) * 24)
+                point = int(point_info[2].rstrip())
+                cost[cell_x,cell_y] = point
             count = count + 1
-    
-    return p_list
+    print(cost)
 
 read_file('maze_map.txt')
 grid = maze_map
@@ -99,7 +99,7 @@ def setup_maze(grid):                          # define a function called setup_
 
             if character == " " or character == "e":
                 path.append((screen_x, screen_y))     # add " " and e to path list
-                cost[screen_x, screen_y] = 0
+                cost[screen_x, screen_y] = 1
 
             if character == "e":
                 green.color("purple")
@@ -113,7 +113,6 @@ def setup_maze(grid):                          # define a function called setup_
                 start_x, start_y = screen_x, screen_y  # assign start locations variables to start_x and start_y
                 cost[screen_x, screen_y] = 0
                 red.goto(screen_x, screen_y)
-
     for cell in path:
         neighbor[cell] = []
         if (cell[0] - 24,cell[1]) in path:
@@ -296,7 +295,6 @@ yellow = Yellow()
 walls = []
 path = []
 solution = {}
-cost = {}
 neighbor = {}
 
 
@@ -307,5 +305,5 @@ if UCS(start_x,start_y,end_x,end_y):
 else:
     print("No way")
 ts = turtle.getscreen()
-ts.getcanvas().postscript(file="duck.png")
+print(cost)
 wn.exitonclick()
