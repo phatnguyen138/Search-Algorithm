@@ -1,6 +1,7 @@
 from __future__ import annotations
 import maze
 import heapq
+import math
 from maze import *
 from typing import Protocol, Iterator, Tuple, TypeVar, Optional
 
@@ -14,9 +15,10 @@ red = Red()
 def heuristic(a, b):
     (x1, y1) = a
     (x2, y2) = b
-    return abs(x1-x2) + abs(y1-y2)
+    return math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))
 
 def astar(x,y,end_x,end_y, neighbor, cost):
+    visited = []
     solution = {}
     # goal_reached = False
     frontier = PriorityQueue()
@@ -33,14 +35,23 @@ def astar(x,y,end_x,end_y, neighbor, cost):
             break
         
         for next in neighbor[current]:
-            new_cost = cost_so_far[current] + cost[next]
-            if next not in cost_so_far or new_cost < cost_so_far[next]:
-                cost_so_far[next] = new_cost
-                priority = new_cost + heuristic(next,(end_x, end_y))
-                frontier.put(next, priority)
-                solution[next] = current
-            green.goto(current)                 # green turtle goto x and y position
-            green.stamp() 
+            if next not in visited:
+                new_cost = cost_so_far[current] + cost[next]
+                if next == (176, 20):
+                    print(next,cost_so_far[current],cost[next])
+                if next not in cost_so_far or new_cost < cost_so_far[next]:
+                    cost_so_far[next] = new_cost
+                    priority = new_cost + heuristic(next,(end_x,end_y))
+                    frontier.put(next, priority)
+                    if next == (176, 20):
+                        frontier.print()
+                        print(neighbor[next])
+                    blue.goto(next)
+                    blue.stamp()
+                    solution[next] = current
+                green.goto(current)                 # green turtle goto x and y position
+                green.stamp() 
+                visited.append(current)
 
     return solution
 
@@ -56,3 +67,6 @@ class PriorityQueue:
     
     def get(self) -> T:
         return heapq.heappop(self.elements)[1]
+
+    def print(self):
+        print(self.elements)

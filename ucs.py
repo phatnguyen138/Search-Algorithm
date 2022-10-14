@@ -13,6 +13,7 @@ blue = Blue()
 red = Red()
 
 def UCS(x,y,end_x,end_y, neighbor, cost):
+    visited = []
     solution = {}
     # goal_reached = False
     frontier = PriorityQueue()
@@ -29,14 +30,18 @@ def UCS(x,y,end_x,end_y, neighbor, cost):
             break
         
         for next in neighbor[current]:
-            new_cost = cost_so_far[current] + cost[next]
-            if next not in cost_so_far or new_cost < cost_so_far[next]:
-                cost_so_far[next] = new_cost
-                priority = new_cost
-                frontier.put(next, priority)
-                solution[next] = current
-            green.goto(current)                 # green turtle goto x and y position
-            green.stamp() 
+            if(next not in visited):
+                new_cost = cost_so_far[current] + cost[next]
+                if next not in cost_so_far or new_cost < cost_so_far[next]:
+                    cost_so_far[next] = new_cost
+                    priority = new_cost
+                    frontier.put(next, priority)
+                    solution[next] = current
+                    blue.goto(next)
+                    blue.stamp()
+                green.goto(current)                 # green turtle goto x and y position
+                green.stamp() 
+                visited.append((current))
 
     return solution
 

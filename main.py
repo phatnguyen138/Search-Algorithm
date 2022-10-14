@@ -66,7 +66,7 @@ def setup_maze(grid):                          # define a function called setup_
                 cost[screen_x, screen_y] = 1
 
             if character == "+":
-                path.append((screen_x, screen_y))     # add " " and e to path list
+                path.append((screen_x, screen_y))     # add "+" and e to path list
                 pink.goto(screen_x, screen_y)
                 pink.stamp()
 
@@ -105,7 +105,6 @@ def backRoute(x, y, solution):
         yellow.stamp()
         x, y = solution[x, y]  
         cost = cost + 1
-        print(x, y)
     return cost
 
 def draw():
@@ -115,7 +114,6 @@ def draw():
         print(backRoute(end_x, end_y,solution))
     else:
         print("No way")
-    print(cost)
     # wn.exitonclick()
     done()
 
