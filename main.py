@@ -4,6 +4,7 @@ from maze import *
 from bfs import *
 from ucs import *
 from dfs import *
+from astar import *
 
 # setup lists
 walls = []
@@ -44,6 +45,7 @@ yellow = Yellow()
 blue = Blue()
 red = Red()
 green = Green()
+pink = Pink()
 maze = Maze()
 
 def setup_maze(grid):                          # define a function called setup_maze
@@ -62,6 +64,11 @@ def setup_maze(grid):                          # define a function called setup_
             if character == " " or character == "e":
                 path.append((screen_x, screen_y))     # add " " and e to path list
                 cost[screen_x, screen_y] = 1
+
+            if character == "+":
+                path.append((screen_x, screen_y))     # add " " and e to path list
+                pink.goto(screen_x, screen_y)
+                pink.stamp()
 
             if character == "e":
                 green.color("purple")
@@ -103,7 +110,7 @@ def backRoute(x, y, solution):
 
 def draw():
     setup_maze(maze_map)
-    solution = dfs(start_x, start_y, end_x, end_y, path)
+    solution = astar(start_x, start_y, end_x, end_y, neighbor, cost)
     if solution:
         print(backRoute(end_x, end_y,solution))
     else:

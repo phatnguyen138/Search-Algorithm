@@ -27,6 +27,13 @@ class Blue(turtle.Turtle):
         self.penup()
         self.speed(0)
 
+class Pink(turtle.Turtle):
+    def __init__(self):
+        turtle.Turtle.__init__(self)
+        self.shape("circle")
+        self.color("pink")
+        self.penup()
+        self.speed(0)
 
 # this is the class for the yellow or turtle
 class Red(turtle.Turtle):

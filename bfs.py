@@ -57,6 +57,7 @@ def bfs(x, y, end_x, end_y, path):
             break
         green.goto(x,y)
         green.stamp()
+        
     return solution
 
 
