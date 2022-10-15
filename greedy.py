@@ -2,12 +2,11 @@ from maze import *
 from PriorityQueue import *
 from heuristic import *
 
-green = Green()
-yellow = Yellow()
-blue = Blue()
-red = Red()
+
 
 def greedy_bfs(x,y,x_end,y_end,neighbor,cost=0):
+    green = Green()
+    blue = Blue()
     visited=[]
     slution={}
     frontier=PriorityQueue()
@@ -26,8 +25,8 @@ def greedy_bfs(x,y,x_end,y_end,neighbor,cost=0):
                 slution[next]=current
                 blue.goto(next)
                 blue.stamp()
-                green.goto(current)
-                green.stamp()
-                visited.append(current)
+        green.goto(current)
+        green.stamp()
+        visited.append(current)
     return slution
 

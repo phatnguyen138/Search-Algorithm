@@ -2,11 +2,12 @@ from maze import *
 from collections import deque
 import time
 
-blue = Blue()
-green = Green()
-red = Red()
-yellow = Yellow()
+
 def dfs(x ,y, end_x, end_y, path):
+    blue = Blue()
+    green = Green()
+    red = Red()
+    yellow = Yellow()
     start_x = x
     start_y = y
     solution = {}

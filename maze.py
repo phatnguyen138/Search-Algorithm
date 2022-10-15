@@ -9,6 +9,7 @@ class Maze(turtle.Turtle):               # define a Maze class
         self.color("black")             # colour of the turtle
         self.penup()                    # lift up the pen so it do not leave a trail
         self.speed(0)
+        self.goto(1000,1000)
 
 # this is the class for the finish line - green square in the maze
 class Green(turtle.Turtle):
@@ -18,6 +19,7 @@ class Green(turtle.Turtle):
         self.color("green")
         self.penup()
         self.speed(0)
+        self.goto(1000,1000)
 
 class Blue(turtle.Turtle):
     def __init__(self):
@@ -26,6 +28,7 @@ class Blue(turtle.Turtle):
         self.color("blue")
         self.penup()
         self.speed(0)
+        self.goto(1000,1000)
 
 class Pink(turtle.Turtle):
     def __init__(self):
@@ -34,6 +37,7 @@ class Pink(turtle.Turtle):
         self.color("pink")
         self.penup()
         self.speed(0)
+        self.goto(1000,1000)
 
 # this is the class for the yellow or turtle
 class Red(turtle.Turtle):
@@ -43,6 +47,7 @@ class Red(turtle.Turtle):
         self.color("red")
         self.penup()
         self.speed(0)
+        self.goto(1000,1000)
 
 class Yellow(turtle.Turtle):
     def __init__(self):
@@ -51,3 +56,4 @@ class Yellow(turtle.Turtle):
         self.color("yellow")
         self.penup()
         self.speed(0)
+        self.goto(1000,1000)

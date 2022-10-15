@@ -4,11 +4,10 @@ import heapq
 import time
 from collections import deque
 
-green = Green()
-yellow = Yellow()
-blue = Blue()
-red = Red()
+
 def bfs(x, y, end_x, end_y, path):
+    green = Green()
+    blue = Blue()
     solution = {}
     visited = set()
     frontier = deque()

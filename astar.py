@@ -4,13 +4,12 @@ from heuristic import *
 from maze import *
 from PriorityQueue import *
 
-green = Green()
-yellow = Yellow()
-blue = Blue()
-red = Red()
+
 
 
 def astar(x,y,end_x,end_y, neighbor, cost):
+    green = Green()
+    blue = Blue()
     visited = []
     solution = {}
     # goal_reached = False

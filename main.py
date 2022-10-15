@@ -36,13 +36,11 @@ read_file('maze_map.txt')
 
 # set up turtle
 wn = turtle.Screen()       
-wn.bgcolor("gray")            
+wn.bgcolor("#e6e6e6")            
 wn.title("Finding path by searching algorithm")
 wn.setup(830,550)          
-turtle.speed(0)
 
 # setup mazegreen = Green()
-tur_pointer=turtle.Turtle()
 yellow = Yellow()
 blue = Blue()
 red = Red()
@@ -73,17 +71,17 @@ def setup_maze(grid):                          # define a function called setup_
                 pink.stamp()
 
             if character == "e":
-                green.color("purple")
                 green.goto(screen_x, screen_y)       # send green sprite to screen location
                 end_x, end_y = screen_x,screen_y     # assign end locations variables to end_x and end_y
-                green.stamp()
-                green.color("green")
+                green.color("#f7f2ef")
+                green.stamp()       
 
             if character == "s":
                 path.append((screen_x, screen_y))
                 start_x, start_y = screen_x, screen_y  # assign start locations variables to start_x and start_y
                 cost[screen_x, screen_y] = 0
                 red.goto(screen_x, screen_y)
+                red.stamp()
     for cell in path:
         neighbor[cell] = []
         if (cell[0] - 24,cell[1]) in path:
@@ -101,12 +99,16 @@ def setup_maze(grid):                          # define a function called setup_
 def backRoute(x, y, solution):
     cost = 0
     yellow.goto(x, y)
-    yellow.stamp()
-    while (x, y) != (start_x, start_y):   
-        yellow.goto(solution[x, y])       
+    yellow.color("#f7f2ef")
+    yellow.stamp()  
+    while (x, y) != (start_x, start_y):
+        yellow.goto(solution[x, y])
+        yellow.color("yellow")       
         yellow.stamp()
         x, y = solution[x, y]  
         cost = cost + 1
+    red.goto(start_x,start_y)
+    red.stamp()
     return cost
 
 def draw():

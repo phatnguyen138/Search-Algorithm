@@ -7,12 +7,11 @@ from typing import Protocol, Iterator, Tuple, TypeVar, Optional
 T = TypeVar('T')
 
 
-green = Green()
-yellow = Yellow()
-blue = Blue()
-red = Red()
+
 
 def UCS(x,y,end_x,end_y, neighbor, cost):
+    green = Green()
+    blue = Blue()
     visited = []
     solution = {}
     # goal_reached = False
