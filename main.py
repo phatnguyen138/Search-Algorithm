@@ -32,7 +32,7 @@ def read_file(name):
                 cost[cell_x,cell_y] = point
             count = count + 1
 
-read_file('maze_map.txt')
+read_file('text.txt')
 
 # set up turtle
 wn = turtle.Screen()       
@@ -113,7 +113,7 @@ def backRoute(x, y, solution):
 
 def draw():
     setup_maze(maze_map)
-    solution = greedy_bfs(start_x, start_y, end_x, end_y, neighbor,cost)
+    solution = astar(start_x, start_y, end_x, end_y, neighbor,cost)
     if solution:
         print(backRoute(end_x, end_y,solution))
     else:
