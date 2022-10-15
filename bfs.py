@@ -8,7 +8,10 @@ from collections import deque
 def bfs(x, y, end_x, end_y, path):
     green = Green()
     blue = Blue()
-    solution = {}
+    red=Red()
+    solution = {}    
+    start_x = x
+    start_y = y
     visited = set()
     frontier = deque()
     frontier.append((x, y))
@@ -54,8 +57,12 @@ def bfs(x, y, end_x, end_y, path):
         if (x,y) == (end_x, end_y):
             goal_reached = True
             break
-        green.goto(x,y)
-        green.stamp()
+        if (x,y)==(start_x,start_y):
+            red.goto(x,y)
+            red.stamp()
+        else:
+            green.goto(x,y)
+            green.stamp()
         
     return solution
 
