@@ -5,6 +5,7 @@ from bfs import *
 from ucs import *
 from dfs import *
 from astar import *
+from greedy import *
 
 # setup lists
 walls = []
@@ -41,12 +42,13 @@ wn.setup(830,550)
 turtle.speed(0)
 
 # setup mazegreen = Green()
+tur_pointer=turtle.Turtle()
 yellow = Yellow()
 blue = Blue()
 red = Red()
 green = Green()
 pink = Pink()
-maze = Maze()
+wall = Maze()
 
 def setup_maze(grid):                          # define a function called setup_maze
     global start_x, start_y, end_x, end_y      # set up global variables for start and end locations
@@ -57,8 +59,8 @@ def setup_maze(grid):                          # define a function called setup_
             screen_y = 260 - (y * 24)          # move to the y location of the screen starting at 260
 
             if character == "X":
-                maze.goto(screen_x, screen_y)         # move pen to the x and y locaion and
-                maze.stamp()                          # stamp a copy of the turtle on the screen
+                wall.goto(screen_x, screen_y)         # move pen to the x and y locaion and
+                wall.stamp()                          # stamp a copy of the turtle on the screen
                 walls.append((screen_x, screen_y))    # add coordinate to walls list
 
             if character == " " or character == "e":
@@ -109,7 +111,7 @@ def backRoute(x, y, solution):
 
 def draw():
     setup_maze(maze_map)
-    solution = astar(start_x, start_y, end_x, end_y, neighbor, cost)
+    solution = greedy_bfs(start_x, start_y, end_x, end_y, neighbor,cost)
     if solution:
         print(backRoute(end_x, end_y,solution))
     else:

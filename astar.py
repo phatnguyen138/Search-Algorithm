@@ -1,21 +1,14 @@
 from __future__ import annotations
 import maze
-import heapq
-import math
+from heuristic import *
 from maze import *
-from typing import Protocol, Iterator, Tuple, TypeVar, Optional
-
-T = TypeVar('T')
+from PriorityQueue import *
 
 green = Green()
 yellow = Yellow()
 blue = Blue()
 red = Red()
 
-def heuristic(a, b):
-    (x1, y1) = a
-    (x2, y2) = b
-    return math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))/24
 
 def astar(x,y,end_x,end_y, neighbor, cost):
     visited = []
@@ -55,18 +48,3 @@ def astar(x,y,end_x,end_y, neighbor, cost):
 
     return solution
 
-class PriorityQueue:
-    def __init__(self):
-        self.elements: list[tuple[float, T]] = []
-    
-    def empty(self) -> bool:
-        return not self.elements
-    
-    def put(self, item: T, priority: float):
-        heapq.heappush(self.elements, (priority, item))
-    
-    def get(self) -> T:
-        return heapq.heappop(self.elements)[1]
-
-    def print(self):
-        print(self.elements)
