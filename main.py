@@ -32,7 +32,7 @@ def read_file(name):
                 cost[cell_x,cell_y] = point
             count = count + 1
 
-read_file('maze_map.txt')
+read_file('point1.txt')
 
 # set up turtle
 wn = turtle.Screen()       
