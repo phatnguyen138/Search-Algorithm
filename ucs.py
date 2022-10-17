@@ -38,8 +38,9 @@ def UCS(x,y,end_x,end_y, neighbor, cost):
                     solution[next] = current
                     blue.goto(next)
                     blue.stamp()
-                green.goto(current)                 # green turtle goto x and y position
-                green.stamp() 
+                if current != (x,y):
+                    green.goto(current)                 # green turtle goto x and y position
+                    green.stamp() 
                 visited.append((current))
 
     return solution

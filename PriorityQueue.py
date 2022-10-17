@@ -1,5 +1,5 @@
 import heapq
-from typing import Protocol, Iterator, Tuple, TypeVar, Optional
+from typing import Protocol, Iterator, Tuple, TypeVar
 
 T = TypeVar('T')
 class PriorityQueue:

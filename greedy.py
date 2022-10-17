@@ -25,7 +25,8 @@ def greedy_bfs(x,y,x_end,y_end,neighbor,cost=0):
                 slution[next]=current
                 blue.goto(next)
                 blue.stamp()
-        green.goto(current)
-        green.stamp()
+        if current != (x,y):
+            green.goto(current)
+            green.stamp()
     return slution
 
