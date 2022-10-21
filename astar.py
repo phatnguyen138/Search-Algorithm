@@ -7,7 +7,7 @@ from PriorityQueue import *
 
 
 
-def astar(x,y,end_x,end_y, neighbor, cost):
+def astar_func(x,y,end_x,end_y, neighbor, cost):
     green = Green()
     blue = Blue()
     visited = []
@@ -29,15 +29,10 @@ def astar(x,y,end_x,end_y, neighbor, cost):
         for next in neighbor[current]:
             if next not in visited:
                 new_cost = cost_so_far[current] + cost[next]
-                if next == (176, 20):
-                    print(next,cost_so_far[current],cost[next])
                 if next not in cost_so_far or new_cost < cost_so_far[next]:
                     cost_so_far[next] = new_cost
                     priority = new_cost + heuristic(next,(end_x,end_y))
                     frontier.put(next, priority)
-                    if next == (176, 20):
-                        frontier.print()
-                        print(neighbor[next])
                     blue.goto(next)
                     blue.stamp()
                     solution[next] = current

@@ -9,7 +9,7 @@ T = TypeVar('T')
 
 
 
-def UCS(x,y,end_x,end_y, neighbor, cost):
+def ucs_func(x,y,end_x,end_y, neighbor, cost):
     green = Green()
     blue = Blue()
     visited = []

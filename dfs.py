@@ -3,7 +3,7 @@ from collections import deque
 import time
 
 
-def dfs(x ,y, end_x, end_y, path):
+def dfs_func(x ,y, end_x, end_y, path):
     blue = Blue()
     green = Green()
     red = Red()

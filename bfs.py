@@ -5,7 +5,7 @@ import time
 from collections import deque
 
 
-def bfs(x, y, end_x, end_y, path):
+def bfs_func(x, y, end_x, end_y, path):
     green = Green()
     blue = Blue()
     red=Red()

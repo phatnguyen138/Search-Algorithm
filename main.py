@@ -1,4 +1,9 @@
+from xml.etree.ElementTree import tostring
 import maze
+import tkinter as tk
+import os,glob
+from PIL import Image
+from eps import *
 from maze import *
 from bfs import *
 from ucs import *
@@ -18,7 +23,7 @@ cost = {}
 
 def read_file(name):
     count = 0
-    with open('mazes/' + name,'r') as f:
+    with open(name,'r') as f:
         first_line = int(f.readline()[0])
         for line in f.readlines():
             if count >= first_line:
@@ -31,15 +36,7 @@ def read_file(name):
                 cost[cell_x,cell_y] = point
             count = count + 1
 
-read_file('map3.txt')
 
-# set up turtle
-wn = turtle.Screen()       
-wn.bgcolor("#e6e6e6")            
-wn.title("Finding path by searching algorithm")
-wn.setup(830,550)          
-
-# setup mazegreen = Green()
 yellow = Yellow()
 blue = Blue()
 red = Red()
@@ -47,8 +44,14 @@ green = Green()
 pink = Pink()
 wall = Maze()
 
+
+wn = turtle.Screen()       
+wn.bgcolor("#e6e6e6")            
+wn.title("Finding path by searching algorithm")
+wn.setup(830,550)  
+
 def setup_maze(grid):                          # define a function called setup_maze
-    global start_x, start_y, end_x, end_y      # set up global variables for start and end locations
+    global start_x,start_y,end_x,end_y
     for y in range(len(grid)):                 # read in the grid line by line
         for x in range(len(grid[y])):          # read each cell in the line
             character = grid[y][x]             # assign the varaible "character" the the x and y location od the grid
@@ -111,14 +114,102 @@ def backRoute(x, y, solution):
     red.stamp()
     return cost
 
-def draw():
+def greedy():
     setup_maze(maze_map)
-    solution = UCS(start_x, start_y, end_x, end_y,neighbor,cost )
+    solution = greedy_bfs(start_x, start_y, end_x, end_y,neighbor,cost)
     if solution:
-        print(backRoute(end_x, end_y,solution))
+        return backRoute(end_x, end_y,solution)
     else:
-        print("No way")
-    # wn.exitonclick()
-    done()
+        return -1
 
-draw()
+def dfs():
+    setup_maze(maze_map)
+    solution = dfs_func(start_x, start_y, end_x, end_y, path)
+    if solution:
+        return backRoute(end_x, end_y,solution)
+    else:
+        return -1
+
+def bfs():
+    setup_maze(maze_map)
+    solution = bfs_func(start_x, start_y, end_x, end_y, path)
+    if solution:
+        return backRoute(end_x, end_y,solution)
+    else:
+        return -1
+
+def ucs():
+    setup_maze(maze_map)
+    solution = ucs_func(start_x, start_y, end_x, end_y,neighbor,cost)
+    if solution:
+        return backRoute(end_x, end_y,solution)
+    else:
+        return -1
+
+def astar():
+    setup_maze(maze_map)
+    solution = astar_func(start_x, start_y, end_x, end_y,neighbor,cost)
+    if solution:
+        return backRoute(end_x, end_y,solution)
+    else:
+        return -1
+
+def generate(string,res):
+    f = open(output_dir+string+".txt","w")
+    turtle.getcanvas().postscript(file = output_dir+string+".eps")
+    f.write(str(res))
+    f.close()
+
+
+os.chdir("input/level1")
+count = 1
+for filename in os.listdir():
+    name_file=filename.split('.')[0]
+    output_dir = "ouput/level1/"+name_file+"/"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    maze_map = []
+    read_file(filename)
+    os.chdir("..")
+    os.chdir("..")
+    print("DFS")
+    res = dfs()
+    generate('dfs',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
+    print("BFS")
+    bfs()
+    generate('bfs',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
+    print("UCS")
+    ucs()
+    generate('ucs',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
+    print("A*")
+    astar()
+    generate('astar',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
+    print("Greedy")
+    greedy()
+    generate('greedy',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
+    os.chdir("input/level1")

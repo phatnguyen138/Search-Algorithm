@@ -16,7 +16,6 @@ def greedy_bfs(x,y,x_end,y_end,neighbor,cost=0):
         current=frontier.get()
         if current==(x_end,y_end):
             break
-        red.goto(current)
         for next in neighbor[current]:
             if next not in visited:
                 priority = heuristic(next,(x_end,y_end))
