@@ -75,7 +75,7 @@ def setup_maze(grid):                          # define a function called setup_
             if character == "e":
                 green.goto(screen_x, screen_y)       # send green sprite to screen location
                 end_x, end_y = screen_x,screen_y     # assign end locations variables to end_x and end_y
-                green.color("#f7f2ef")
+                green.color("#A020F0")
                 green.stamp()       
 
             if character == "s":
@@ -102,9 +102,9 @@ def setup_maze(grid):                          # define a function called setup_
 def backRoute(x, y, solution):
     cost = 0
     yellow.goto(x, y)
-    yellow.color("#f7f2ef")
+    yellow.color("#A020F0")
     yellow.stamp()  
-    while (x, y) != (start_x, start_y):
+    while solution[x,y] != (start_x, start_y):
         yellow.goto(solution[x, y])
         yellow.color("yellow")       
         yellow.stamp()
