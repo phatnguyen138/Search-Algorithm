@@ -1,9 +1,9 @@
 from xml.etree.ElementTree import tostring
+
+from numpy import delete
 import maze
 import tkinter as tk
 import os,glob
-from PIL import Image
-from eps import *
 from maze import *
 from bfs import *
 from ucs import *
@@ -165,13 +165,13 @@ os.chdir("input/level1")
 count = 1
 for filename in os.listdir():
     name_file=filename.split('.')[0]
-    output_dir = "ouput/level1/"+name_file+"/"
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
     maze_map = []
     read_file(filename)
     os.chdir("..")
     os.chdir("..")
+    output_dir = "output/level1/"+name_file+"/"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     print("DFS")
     res = dfs()
     generate('dfs',res)
