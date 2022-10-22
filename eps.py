@@ -5,10 +5,10 @@ os.chdir("output")
 
 TARGET_BOUNDS = (1024, 1024)
 
-for rootfolder in os.listdir():
+for rootfolder in os.listdir():     #rootfolder = "level1,level2"
     os.chdir(rootfolder)
     # iterate through all file
-    for folder in os.listdir():
+    for folder in os.listdir():     #folder = "input1,input2"
         os.chdir(folder)
         for filename in glob.glob("*.eps"):
             print(filename)
@@ -32,4 +32,4 @@ for rootfolder in os.listdir():
             pic.save(name_file+".jpg")
             os.remove(filename)
         os.chdir('..')
-    os.chdir(folder)
+    os.chdir('..')

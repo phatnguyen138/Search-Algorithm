@@ -1,21 +1,21 @@
 0
-XXXXXXXXXXXXXXXXXXXXXXXeXXXXXXXXXX
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X                                X
-X  S                             x
-X                                X
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+xxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxx
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x                                x
+x  S                             x
+x                                x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

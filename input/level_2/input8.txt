@@ -9,24 +9,24 @@
 23 15 -17
 25 17 -19
 25 19 -24
-XXXXXXXXXXXXXXXXXXXXXXXXXeXXXXXXXX
-XS+                            X X
-X XXXXXXXXXXXXXXX+XXXX+XXXXXXX X X
-X XX       X   +X XXXX XXXXXXX X X
-X XX XXXXX X XX X XXXX XXXXXXX X X
-X XX XXXXX X XX X XXXX XXXXXXX X X
-X XX XXXXX X XX X XXXX XXXXXXX X X
-X XX XXXXX X XX X XXXX XXXXXXX X X
-X XX+XXXXX X XX   XXXX       + X X
-X XX XXXXX X XXXXXXXXX XXXXXXX X X
-X XX XXXXX X X      XX XXXXXXX X X
-X XX XXXXX X X+XXXX XX XXXXXXX X X
-X XX XXXXX X XXXXXX XX XXXXXXX X X
-X XX XXXXX X        XX XXXXXXX X X
-X XX XXXXX XXXXXXXXXXX XXXXXXX X X
-X XX XXXXX             +       X X
-X XX XXXXXXXXXXXXXXXXXXXXXXXXXXX X
-X XX                     + +     X
-X XXXXXXXXXXXXXXXXXXXXXXXX XXXXXXX
-X                          XXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+xxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxx
+xS+                 x          x x
+x xxxxxxxxxxxxxxx+xxxx+xxxxxxx x x
+x xx       x   +x xxxx xxxxxxx x x
+x xx xxxxx x xx x xxxx xxxxxxx x x
+x xx xxxxx x xx x xxxx xxxxxxx x x
+x xx xxxxx x xx x xxxx xxxxxxx x x
+x xx xxxxx x xx x xxxx xxxxxxx x x
+x xx+xxxxx x xx   xxxx       + x x
+x xx xxxxx x xxxxxxxxx xxxxxxx x x
+x xx xxxxx x x      xx xxxxxxx x x
+x xx xxxxx x x+xxxx xx xxxxxxx x x
+x xx xxxxx x xxxxxx xx xxxxxxx x x
+x xx xxxxx x        xx xxxxxxx x x
+x xx xxxxx xxxxxxxxxxx xxxxxxx x x
+x xx xxxxx             +       x x
+x xx xxxxxxxxxxxxxxxxxxxxxxxxxxx x
+x xx                     + +     x
+x xxxxxxxxxxxxxxxxxxxxxxxx xxxxxxx
+x                          xxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

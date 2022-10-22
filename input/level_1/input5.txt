@@ -1,22 +1,22 @@
 0
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XX              XXXXXX       XXXXX
-XX XXXXXXXXXXXX XX   X XXXXX XXXXX
-XX XX         X XX X X XX    XXXXX
-XX XX XXXXXXX X XX X X XX XX XXXXX
-XX    XXXXXXX X XX X X XX X      X
-XX XXXXXXXXXX X XX XXX XX XX XXXXX
-XX X        X   S      XX XX    XX
-XX X XXXXX XXXX XX XX XXX XX XXXXX
-XX X XXXXX XXXX XX XX XXX XX XX XX
-XX X XXXXX XXXX XX XX X X XX XX XX
-XX X X     XXXX XX XX X X XX XX XX
-XX X X XXXXXXXX XX XX X X XX XX XX
-XX X X XXXXXXXX XX XX X   XX XX XX
-XX XXX          XX XXXX X XX XX XX
-XX XXXXXXXXXXXXXXX XXXXXX XX XX XX
-XX                        XX XX XX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXX XX XX
-XXXXXX                       XX XX
-e      XXXXXXXXXXXXXXXXXXXXX    XX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xx              xxxxxx       xxxxx
+xx xxxxxxxxxxxx xx   x xxxxx xxxxx
+xx xx         x xx x x xx    xxxxx
+xx xx xxxxxxx x xx x x xx xx xxxxx
+xx    xxxxxxx x xx x x xx x      x
+xx xxxxxxxxxx x xx xxx xx xx xxxxx
+xx x        x   S      xx xx    xx
+xx x xxxxx xxxx xx xx xxx xx xxxxx
+xx x xxxxx xxxx xx xx xxx xx xx xx
+xx x xxxxx xxxx xx xx x x xx xx xx
+xx x x     xxxx xx xx x x xx xx xx
+xx x x xxxxxxxx xx xx x x xx xx xx
+xx x x xxxxxxxx xx xx x   xx xx xx
+xx xxx          xx xxxx x xx xx xx
+xx xxxxxxxxxxxxxxx xxxxxx xx xx xx
+xx                        xx xx xx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxx xx xx
+xxxxxx                       xx xx
+       xxxxxxxxxxxxxxxxxxxxx    xx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
