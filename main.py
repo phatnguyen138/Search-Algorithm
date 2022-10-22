@@ -79,7 +79,7 @@ def setup_maze(grid):                          # define a function called setup_
                 green.color("#A020F0")
                 green.stamp()       
 
-            if character == "s":
+            if character == "S":
                 path.append((screen_x, screen_y))
                 start_x, start_y = screen_x, screen_y  # assign start locations variables to start_x and start_y
                 cost[screen_x, screen_y] = 0
@@ -163,7 +163,7 @@ def generate(string,res):
     f.close()
 
 
-os.chdir("input/level1")
+os.chdir("input/level_1")
 count = 1
 for filename in os.listdir():
     name_file=filename.split('.')[0]
@@ -214,11 +214,11 @@ for filename in os.listdir():
     # neighbor = {}
     # time.sleep(1)
     # turtle.clearscreen()
-    os.chdir("input/level1")
+    os.chdir("input/level_1")
 
 
 os.chdir("..")
-os.chdir("level2")
+os.chdir("level_2")
 count = 1
 for filename in os.listdir():
     name_file=filename.split('.')[0]
@@ -226,7 +226,7 @@ for filename in os.listdir():
     read_file(filename)
     os.chdir("..")
     os.chdir("..")
-    output_dir = "output/level2/"+name_file+"/"
+    output_dir = "output/level_2/"+name_file+"/"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     print("A*")
@@ -245,4 +245,4 @@ for filename in os.listdir():
     neighbor = {}
     time.sleep(1)
     turtle.clearscreen()
-    os.chdir("input/level2")
+    os.chdir("input/level_2")

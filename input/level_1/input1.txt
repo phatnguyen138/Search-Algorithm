@@ -1,6 +1,5 @@
 0
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X                   e            X
+XXXXXXXXXXXXXXXXXXXXXXXeXXXXXXXXXX
 X                                X
 X                                X
 X                                X
@@ -16,6 +15,7 @@ X                                X
 X                                X
 X                                X
 X                                X
-X  s                             x
+X                                X
+X  S                             x
 X                                X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

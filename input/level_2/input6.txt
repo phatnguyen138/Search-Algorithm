@@ -2,7 +2,7 @@
 15 1 -5
 17 15 -2
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XX             +               sXX
+XX             +               SXX
 XX XXXXX XXXXXXX X XXXX XXX XXX XX
 XX XXXXX XX   XX X X XX   X XXX XX
 XX XXXXX XXXXXXX X X XXXXXX XXX XX
@@ -20,5 +20,5 @@ XX               +               X
 XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXX X
 XXX         XXXX              XX X
 XXXX      XXX  XXXXXXXX       XX X
-Xe                               X
+e                                X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
