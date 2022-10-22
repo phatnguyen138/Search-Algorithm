@@ -1,0 +1,22 @@
+0
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X                 X              X
+X                 X      X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      XXXXXXXXX
+X         X       X              X
+X         X              X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      X       X
+X         X       X      XXXXXXXXX
+X   s     X       X              e
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
