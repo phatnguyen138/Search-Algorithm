@@ -46,7 +46,6 @@ green = Green()
 pink = Pink()
 wall = Maze()
 
-
 wn = turtle.Screen()       
 wn.bgcolor("#e6e6e6")            
 wn.title("Finding path by searching algorithm")
@@ -116,13 +115,6 @@ def backRoute(x, y, solution):
     red.stamp()
     return cost
 
-def greedy():
-    setup_maze(maze_map)
-    solution = greedy_bfs(start_x, start_y, end_x, end_y,neighbor,points,cost)
-    if solution:
-        return backRoute(end_x, end_y,solution)
-    else:
-        return -1
 
 def dfs():
     setup_maze(maze_map)
@@ -150,7 +142,15 @@ def ucs():
 
 def astar():
     setup_maze(maze_map)
-    solution = astar_func(start_x, start_y, end_x, end_y,neighbor,points,cost)
+    solution = astar_func(start_x, start_y, end_x, end_y,neighbor,points=points,cost=cost)
+    if solution:
+        return backRoute(end_x, end_y,solution)
+    else:
+        return -1
+
+def greedy():
+    setup_maze(maze_map)
+    solution = greedy_bfs(start_x, start_y, end_x, end_y,neighbor,points=points,cost=cost)
     if solution:
         return backRoute(end_x, end_y,solution)
     else:
@@ -171,35 +171,66 @@ for filename in os.listdir():
     read_file(filename)
     os.chdir("..")
     os.chdir("..")
-    output_dir = "output/level1/"+name_file+"/"
+    # output_dir = "output/level1/"+name_file+"/"
+    # if not os.path.exists(output_dir):
+    #     os.makedirs(output_dir)
+    # print("DFS")
+    # res = dfs()
+    # generate('dfs',res)
+    # walls = []
+    # path = []
+    # neighbor = {}
+    # time.sleep(1)
+    # turtle.clearscreen()
+    # print("BFS")
+    # res = bfs()
+    # generate('bfs',res)
+    # walls = []
+    # path = []
+    # neighbor = {}
+    # time.sleep(1)
+    # turtle.clearscreen()
+    # print("UCS")
+    # res = ucs()
+    # generate('ucs',res)
+    # walls = []
+    # path = []
+    # neighbor = {}
+    # time.sleep(1)
+    # turtle.clearscreen()
+    # print("A*")
+    # res = astar()
+    # generate('astar',res)
+    # walls = []
+    # path = []
+    # neighbor = {}
+    # time.sleep(1)
+    # turtle.clearscreen()
+    # print("Greedy")
+    # res = greedy()
+    # generate('greedy',res)
+    # walls = []
+    # path = []
+    # neighbor = {}
+    # time.sleep(1)
+    # turtle.clearscreen()
+    os.chdir("input/level1")
+
+
+os.chdir("..")
+os.chdir("level2")
+count = 1
+for filename in os.listdir():
+    name_file=filename.split('.')[0]
+    maze_map = []
+    read_file(filename)
+    os.chdir("..")
+    os.chdir("..")
+    output_dir = "output/level2/"+name_file+"/"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    print("DFS")
-    res = dfs()
-    generate('dfs',res)
-    walls = []
-    path = []
-    neighbor = {}
-    time.sleep(1)
-    turtle.clearscreen()
-    print("BFS")
-    bfs()
-    generate('bfs',res)
-    walls = []
-    path = []
-    neighbor = {}
-    time.sleep(1)
-    turtle.clearscreen()
-    print("UCS")
-    ucs()
-    generate('ucs',res)
-    walls = []
-    path = []
-    neighbor = {}
-    time.sleep(1)
-    turtle.clearscreen()
     print("A*")
-    astar()
+    res = astar()
     generate('astar',res)
     walls = []
     path = []
@@ -207,11 +238,11 @@ for filename in os.listdir():
     time.sleep(1)
     turtle.clearscreen()
     print("Greedy")
-    greedy()
+    res = greedy()
     generate('greedy',res)
     walls = []
     path = []
     neighbor = {}
     time.sleep(1)
     turtle.clearscreen()
-    os.chdir("input/level1")
+    os.chdir("input/level2")
