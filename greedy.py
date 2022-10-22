@@ -4,7 +4,7 @@ from heuristic import *
 
 
 
-def greedy_bfs(x,y,x_end,y_end,neighbor,cost=0):
+def greedy_bfs(x,y,x_end,y_end,neighbor,points,cost=0):
     green = Green()
     blue = Blue()
     red=Red()
@@ -22,7 +22,7 @@ def greedy_bfs(x,y,x_end,y_end,neighbor,cost=0):
             break
         for next in neighbor[current]:
             if next not in visited:
-                priority = heuristic(next,(x_end,y_end))
+                priority = heuristic_greedy(next,(x_end,y_end),points)
                 frontier.put(next,priority)
                 visited.append(next)
                 slution[next]=current

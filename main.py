@@ -20,6 +20,7 @@ neighbor = {}
 # read map from text file
 maze_map = []
 cost = {}
+points = {}
 
 def read_file(name):
     count = 0
@@ -34,6 +35,7 @@ def read_file(name):
                 cell_y = 260 - (int(point_info[1]) * 24)
                 point = int(point_info[2].rstrip())
                 cost[cell_x,cell_y] = point
+                points[cell_x,cell_y] = point
             count = count + 1
 
 
@@ -116,7 +118,7 @@ def backRoute(x, y, solution):
 
 def greedy():
     setup_maze(maze_map)
-    solution = greedy_bfs(start_x, start_y, end_x, end_y,neighbor,cost)
+    solution = greedy_bfs(start_x, start_y, end_x, end_y,neighbor,points,cost)
     if solution:
         return backRoute(end_x, end_y,solution)
     else:
@@ -148,7 +150,7 @@ def ucs():
 
 def astar():
     setup_maze(maze_map)
-    solution = astar_func(start_x, start_y, end_x, end_y,neighbor,cost)
+    solution = astar_func(start_x, start_y, end_x, end_y,neighbor,points,cost)
     if solution:
         return backRoute(end_x, end_y,solution)
     else:

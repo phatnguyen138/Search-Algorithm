@@ -29,7 +29,7 @@ for rootfolder in os.listdir():
 
             # Save to PNG
             name_file = filename.split(".")[0]
-            pic.save(name_file+".png")
+            pic.save(name_file+".jpg")
             os.remove(filename)
         os.chdir('..')
     os.chdir(folder)
