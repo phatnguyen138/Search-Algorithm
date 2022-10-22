@@ -25,7 +25,8 @@ points = {}
 def read_file(name):
     count = 0
     with open(name,'r') as f:
-        first_line = int(f.readline()[0])
+        first_line = int(f.readline())
+        print(first_line)
         for line in f.readlines():
             if count >= first_line:
                 maze_map.append(line)
@@ -59,7 +60,7 @@ def setup_maze(grid):                          # define a function called setup_
             screen_x = -400 + (x * 24)         # move to the x location on the screen staring at -400
             screen_y = 260 - (y * 24)          # move to the y location of the screen starting at 260
 
-            if character == "X":
+            if character == "x":
                 wall.goto(screen_x, screen_y)         # move pen to the x and y locaion and
                 wall.stamp()                          # stamp a copy of the turtle on the screen
                 walls.append((screen_x, screen_y))    # add coordinate to walls list
@@ -67,17 +68,16 @@ def setup_maze(grid):                          # define a function called setup_
             if character == " " or character == "e":
                 path.append((screen_x, screen_y))     # add " " and e to path list
                 cost[screen_x, screen_y] = 1
+                if y == 0 or x == 0 or x == len(grid[y]) - 1 or y == len(grid) -1:
+                    green.goto(screen_x, screen_y)       # send green sprite to screen location
+                    end_x, end_y = screen_x,screen_y     # assign end locations variables to end_x and end_y
+                    green.color("#A020F0")
+                    green.stamp()
 
             if character == "+":
                 path.append((screen_x, screen_y))     # add "+" and e to path list
                 pink.goto(screen_x, screen_y)
-                pink.stamp()
-
-            if character == "e":
-                green.goto(screen_x, screen_y)       # send green sprite to screen location
-                end_x, end_y = screen_x,screen_y     # assign end locations variables to end_x and end_y
-                green.color("#A020F0")
-                green.stamp()       
+                pink.stamp() 
 
             if character == "s":
                 path.append((screen_x, screen_y))
@@ -171,49 +171,49 @@ for filename in os.listdir():
     read_file(filename)
     os.chdir("..")
     os.chdir("..")
-    # output_dir = "output/level1/"+name_file+"/"
-    # if not os.path.exists(output_dir):
-    #     os.makedirs(output_dir)
-    # print("DFS")
-    # res = dfs()
-    # generate('dfs',res)
-    # walls = []
-    # path = []
-    # neighbor = {}
-    # time.sleep(1)
-    # turtle.clearscreen()
-    # print("BFS")
-    # res = bfs()
-    # generate('bfs',res)
-    # walls = []
-    # path = []
-    # neighbor = {}
-    # time.sleep(1)
-    # turtle.clearscreen()
-    # print("UCS")
-    # res = ucs()
-    # generate('ucs',res)
-    # walls = []
-    # path = []
-    # neighbor = {}
-    # time.sleep(1)
-    # turtle.clearscreen()
-    # print("A*")
-    # res = astar()
-    # generate('astar',res)
-    # walls = []
-    # path = []
-    # neighbor = {}
-    # time.sleep(1)
-    # turtle.clearscreen()
-    # print("Greedy")
-    # res = greedy()
-    # generate('greedy',res)
-    # walls = []
-    # path = []
-    # neighbor = {}
-    # time.sleep(1)
-    # turtle.clearscreen()
+    output_dir = "output/level1/"+name_file+"/"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    print("DFS")
+    res = dfs()
+    generate('dfs',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
+    print("BFS")
+    res = bfs()
+    generate('bfs',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
+    print("UCS")
+    res = ucs()
+    generate('ucs',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
+    print("A*")
+    res = astar()
+    generate('astar',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
+    print("Greedy")
+    res = greedy()
+    generate('greedy',res)
+    walls = []
+    path = []
+    neighbor = {}
+    time.sleep(1)
+    turtle.clearscreen()
     os.chdir("input/level1")
 
 
@@ -223,6 +223,9 @@ count = 1
 for filename in os.listdir():
     name_file=filename.split('.')[0]
     maze_map = []
+    walls = []
+    path = []
+    neighbor = {}
     read_file(filename)
     os.chdir("..")
     os.chdir("..")
